@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Make Todo{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<div style="color:white; text-align:center; margin-top:10px; margin-bottom:10px;">
+
+<h1>Welcome, {{ user.username }}!</h1>
+<h1>Make a new Streak</h1>
+
+<form method="post">
+
+{% csrf_token %}
+        <div class="todo_section">
+        <h2>name</h2>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            class="oval_textbox">
+
+    </div>
+
+    <button class="button" type="submit">
+        Create Streak
+    </button>
+    {% if form.errors %}
+        <div class="error">
+            {{ form.errors }}
+        </div>
+    {% endif %}
+{% else %}
+    <h2 style="color: white; text-align: center;">Please login or signup with the top right button</h2>
+{% endif %}
+{% endblock %}
