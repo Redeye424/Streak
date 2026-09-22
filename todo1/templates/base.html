@@ -8,7 +8,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Streak">
     <link rel="apple-touch-icon" href="{% static 'icons/icon-192.png' %}">
-    <link rel="stylesheet" href="{% static 'todo1/style.css' %}">
+    <link rel="stylesheet" href="{% static 'todo1/style.css' %}?v=2">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}Streak{% endblock %}</title>
 </head>
@@ -65,9 +65,7 @@
     {% if user.is_authenticated %}
     <form method="POST" action="{% url 'logout' %}">
         {% csrf_token %}
-
         <input type="hidden" name="action" value="logout">
-
         <button class="button" type="submit">
             logout
         </button>
@@ -78,6 +76,7 @@
             New Streak
         </button>
     </form>
+    {% block popup_actions %}{% endblock %}
     {% else %}
     <form method="POST" action="{% url 'signup' %}">
         {% csrf_token %}

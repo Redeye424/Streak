@@ -1,9 +1,39 @@
 {% extends "base.html" %}
 {% block title %}Home{% endblock %}
+{% block popup_actions %}
+    {% if profile.text_box_on %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="text_box_off">
+            <button class="button" type="submit">
+                <p>Turn todo list OFF</p>
+            </button>
+        </form>
+    {% else %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="text_box_on">
+            <button class="button" type="submit">
+                <p>Turn todo list ON</p>
+            </button>
+        </form>
+    {% endif %}
+{% endblock %}
 {% block content %}
 
 {% if user.is_authenticated %}
-
+    {% if profile.text_box_on %}
+    <form method="POST" class="text_box_form">
+        {% csrf_token %}
+        <p class="textbox">
+            <textarea name="text_box" id="text_box">{{ profile.text_box }}</textarea>
+        </p>
+        <input type="hidden" name="action" value="save_text_box">
+        <button class="button" type="submit">
+            <p>Save todo changes</p>
+        </button>
+    </form>
+    {% endif %}
 {% for streak in streaks %}
 
     <div class="streak-container">
@@ -138,66 +168,66 @@ const button = document.getElementById("celebrateBtn");
 
 const leftHorn = document.getElementById("leftHorn");
 const rightHorn = document.getElementById("rightHorn");
+if (button) {
+    button.addEventListener("click", () => {
 
-button.addEventListener("click", () => {
+        // Slide horns in
+        leftHorn.classList.add("show");
+        rightHorn.classList.add("show");
 
-    // Slide horns in
-    leftHorn.classList.add("show");
-    rightHorn.classList.add("show");
+        // Fire confetti from the horns
+        setTimeout(() => {
 
-    // Fire confetti from the horns
-    setTimeout(() => {
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                angle: 20,
+                startVelocity: 60,
+                origin: {
+                    x: 0.12,
+                    y: 0.5
+                }
+            });
 
-        confetti({
-            particleCount: 150,
-            spread: 70,
-            angle: 20,
-            startVelocity: 60,
-            origin: {
-                x: 0.12,
-                y: 0.5
-            }
-        });
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                angle: 160,
+                startVelocity: 60,
+                origin: {
+                    x: 0.88,
+                    y: 0.5
+                }
+            });
 
-        confetti({
-            particleCount: 150,
-            spread: 70,
-            angle: 160,
-            startVelocity: 60,
-            origin: {
-                x: 0.88,
-                y: 0.5
-            }
-        });
-
-    }, 400);
-
-
-    // Extra middle burst
-    setTimeout(() => {
-
-        confetti({
-            particleCount: 200,
-            spread: 120,
-            startVelocity: 45,
-            origin: {
-                x: 0.5,
-                y: 0.6
-            }
-        });
-
-    }, 550);
+        }, 400);
 
 
-    // Hide horns
-    setTimeout(() => {
+        // Extra middle burst
+        setTimeout(() => {
 
-        leftHorn.classList.remove("show");
-        rightHorn.classList.remove("show");
+            confetti({
+                particleCount: 200,
+                spread: 120,
+                startVelocity: 45,
+                origin: {
+                    x: 0.5,
+                    y: 0.6
+                }
+            });
 
-    }, 1700);
+        }, 550);
 
-});
 
+        // Hide horns
+        setTimeout(() => {
+
+            leftHorn.classList.remove("show");
+            rightHorn.classList.remove("show");
+
+        }, 1700);
+
+    });
+}
 </script>
 {% endblock %}

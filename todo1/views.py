@@ -55,9 +55,27 @@ def signup(request):
 
 
 def home(request):
-
+    
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
+
+        if request.method == "POST":
+            action = request.POST.get("action")
+
+            if action == "save_text_box":
+                profile.text_box = request.POST.get("text_box", "")
+                profile.save(update_fields=["text_box"])
+                return redirect("home")
+
+            if action == "text_box_on":
+                profile.text_box_on = True
+                profile.save(update_fields=["text_box_on"])
+                return redirect("home")
+
+            if action == "text_box_off":
+                profile.text_box_on = False
+                profile.save(update_fields=["text_box_on"])
+                return redirect("home")
 
         # Reset streaks if they have not been completed for more than one day
         for streak in profile.streaks.all():

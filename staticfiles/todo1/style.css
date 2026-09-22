@@ -1,3 +1,42 @@
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding-top: 80px;
+    background: #212121;
+    color: white;
+    overflow-x: hidden;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================
+   TABS
+========================= */
 
 .tab {
     position: relative;
@@ -10,359 +49,686 @@
     text-decoration: none;
 }
 
-body {
-    margin: 0;
-    padding-top: 80px;
-    background: #212121;
-    overflow-x: hidden;
-}
+
+/* =========================
+   BACKGROUND
+========================= */
 
 .bg-pattern {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
 }
+
 
 /* Pentagons */
+
 .pentagon {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
+    position: absolute;
 
-  width: var(--s);
-  height: var(--s);
+    left: var(--x);
+    top: var(--y);
 
-  background: rgba(59, 130, 246, 0.08);
+    width: var(--s);
+    height: var(--s);
 
-  clip-path: polygon(
-    50% 0%,
-    100% 38%,
-    82% 100%,
-    18% 100%,
-    0% 38%
-  );
+    background: rgba(59, 130, 246, 0.08);
 
-  transform: rotate(var(--r));
-  animation: float 8s ease-in-out infinite alternate;
+    clip-path: polygon(
+        50% 0%,
+        100% 38%,
+        82% 100%,
+        18% 100%,
+        0% 38%
+    );
+
+    transform: rotate(var(--r));
+
+    animation: float 8s ease-in-out infinite alternate;
 }
+
 
 /* Stars */
+
 .star {
-  position: absolute;
-  left: var(--x);
-  top: var(--y);
+    position: absolute;
 
-  width: var(--size);
-  height: var(--size);
+    left: var(--x);
+    top: var(--y);
 
-  background: white;
-  border-radius: 50%;
+    width: var(--size);
+    height: var(--size);
 
-  box-shadow:
-    0 0 6px white,
-    0 0 12px #60a5fa;
+    background: white;
+    border-radius: 50%;
 
-  animation: twinkle 2.5s ease-in-out infinite alternate;
+    box-shadow:
+        0 0 6px white,
+        0 0 12px #60a5fa;
+
+    animation: twinkle 2.5s ease-in-out infinite alternate;
 }
+
 
 @keyframes float {
-  from {
-    transform: translateY(0) rotate(var(--r));
-  }
-  to {
-    transform: translateY(-10px) rotate(calc(var(--r) + 5deg));
-  }
+    from {
+        transform: translateY(0) rotate(var(--r));
+    }
+
+    to {
+        transform: translateY(-10px)
+                   rotate(calc(var(--r) + 5deg));
+    }
 }
+
 
 @keyframes twinkle {
-  from {
-    opacity: .3;
-    transform: scale(.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1.3);
-  }
+    from {
+        opacity: .3;
+        transform: scale(.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.3);
+    }
 }
 
+
+/* =========================
+   BUTTONS
+========================= */
 
 .button {
- text-decoration: none;
- appearance: button;
- background-color: #1899D6;
- border: solid transparent;
- border-radius: 16px;
- border-width: 0 0 4px;
- box-sizing: border-box;
- color: white !important;
- cursor: pointer;
- display: inline-block;
- font-size: 15px;
- font-weight: 700;
- letter-spacing: .8px;
- line-height: 20px;
- margin: 0;
- outline: none;
- overflow: visible;
- padding: 13px 19px;
- text-align: center;
- text-transform: uppercase;
- touch-action: manipulation;
- transform: translateZ(0);
- transition: filter .2s;
- user-select: none;
- -webkit-user-select: none;
- vertical-align: middle;
- white-space: nowrap;
+    position: relative;
+
+    text-decoration: none;
+    appearance: button;
+
+    background-color: #1899D6;
+
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+
+    color: white !important;
+
+    cursor: pointer;
+
+    display: inline-block;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    letter-spacing: .8px;
+    line-height: 20px;
+
+    margin: 10px;
+
+    outline: none;
+
+    overflow: visible;
+
+    padding: 13px 19px;
+
+    text-align: center;
+    text-transform: uppercase;
+
+    touch-action: manipulation;
+
+    transform: translateZ(0);
+
+    transition: filter .2s;
+
+    user-select: none;
+    -webkit-user-select: none;
+
+    vertical-align: middle;
+
+    white-space: nowrap;
+
+    max-width: calc(100% - 20px);
 }
+
 
 .button:after {
- background-clip: padding-box;
- background-color: #1CB0F6;
- border: solid transparent;
- border-radius: 16px;
- border-width: 0 0 4px;
- bottom: -4px;
- content: "";
- left: 0;
- position: absolute;
- right: 0;
- top: 0;
- z-index: -1;
+    background-clip: padding-box;
+
+    background-color: #1CB0F6;
+
+    border: solid transparent;
+    border-radius: 16px;
+    border-width: 0 0 4px;
+
+    bottom: -4px;
+
+    content: "";
+
+    left: 0;
+
+    position: absolute;
+
+    right: 0;
+    top: 0;
+
+    z-index: -1;
 }
 
-.button:main, .button:focus {
- user-select: auto;
-}
 
 .button:hover:not(:disabled) {
- filter: brightness(1.1);
- text-decoration: none;
+    filter: brightness(1.1);
 }
+
 
 .button:disabled {
- cursor: auto;
+    cursor: auto;
 }
+
 
 .button:active:after {
- border-width: 0 0 0px;
+    border-width: 0;
 }
+
 
 .button:active {
- padding-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 
+/* =========================
+   HAMBURGER
+========================= */
 
 #openBtn {
     position: fixed;
+
     top: 20px;
     right: 20px;
+
     z-index: 10000;
 
     background: none;
     border: none;
-    font-size: 32px;
+
     cursor: pointer;
-    padding: 5px;
+
+    padding: 8px;
+
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
 }
+
 
 #openBtn .line {
     display: block;
+
     width: 30px;
     height: 4px;
+
     background-color: white;
-    margin: 5px 0;
+
+    margin: 3px 0;
+
+    border-radius: 3px;
+
     transition: 0.2s;
 }
 
+
 #openBtn.open .line:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
+    transform: translateY(10px) rotate(45deg);
 }
+
 
 #openBtn.open .line:nth-child(2) {
     opacity: 0;
 }
 
+
 #openBtn.open .line:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
+    transform: translateY(-10px) rotate(-45deg);
 }
+
+
+/* =========================
+   MENU DIALOG
+========================= */
 
 dialog {
     position: fixed;
+
     top: 70px;
     right: 20px;
+
     left: auto;
 
     margin: 0;
 
     border: none;
     border-radius: 15px;
+
     padding: 30px;
 
     background: #212121;
     color: white;
 
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-}
 
-.horn{
-    position:fixed;
-    top:50%;
-    font-size:90px;
-    transform:translateY(-50%);
-    transition:.45s cubic-bezier(.25,.8,.25,1);
-    z-index:999;
-    pointer-events:none;
-}
-
-#leftHorn{
-    left:-120px;
-}
-
-#rightHorn{
-    right:-120px;
-    transform:translateY(-50%) scaleX(-1);
-}
-
-#leftHorn.show{
-    transform:translate(140px,-50%);
-}
-
-#rightHorn.show{
-    transform:translate(-140px,-50%) scaleX(-1);
+    max-width: calc(100vw - 40px);
 }
 
 
+/* =========================
+   HORNS
+========================= */
 
-@media(max-width:700px){
+.horn {
+    position: fixed;
 
-    .todo_form_grid {
-        grid-template-columns: 1fr;
-        width:95%;
-    }
+    top: 50%;
 
-    .Horn {
-    transform: rotate(180deg);
-  }
+    font-size: 90px;
+
+    transform: translateY(-50%);
+
+    transition: .45s cubic-bezier(.25,.8,.25,1);
+
+    z-index: 999;
+
+    pointer-events: none;
+
+    user-select: none;
 }
+
+
+#leftHorn {
+    left: -120px;
+}
+
+
+#rightHorn {
+    right: -120px;
+
+    transform:
+        translateY(-50%)
+        scaleX(-1);
+}
+
+
+#leftHorn.show {
+    transform:
+        translate(140px, -50%);
+}
+
+
+#rightHorn.show {
+    transform:
+        translate(-140px, -50%)
+        scaleX(-1);
+}
+
+
+/* =========================
+   LOGIN
+========================= */
 
 .login_input {
     display: flex;
+
     flex-direction: column;
+
     align-items: center;
+
     gap: 10px;
+
+    width: 100%;
 }
 
+
+/* =========================
+   INPUTS
+========================= */
+
+.oval_textbox {
+    width: min(300px, 90vw);
+
+    padding: 12px 18px;
+
+    margin: 5px 0;
+
+    background: #2f2f2f;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 25px;
+
+    outline: none;
+
+    font-size: 16px;
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+.oval_textbox:focus {
+    box-shadow:
+        0 0 0 2px #1e90ff;
+}
+
+
+.oval_textbox::placeholder {
+    color: #b0b0b0;
+}
+
+
+.textbox {
+    width: min(600px, 90vw);
+    margin: 5px auto;
+    padding: 0;
+    text-align: center;
+}
+
+
+.text_box_form {
+    text-align: center;
+}
+
+
+#text_box {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 150px;
+    padding: 14px 18px;
+    background: transparent;
+    color: white;
+    border: 2px solid #1e90ff;
+    border-radius: 25px;
+    outline: none;
+    font: inherit;
+    resize: vertical;
+    text-align: left;
+    box-shadow: none;
+}
+
+
+#text_box:focus {
+    box-shadow:
+        0 0 0 2px rgba(30, 144, 255, 0.35);
+}
+
+
+#text_box::placeholder {
+    color: #b0b0b0;
+}
+
+/* =========================
+   TODO FORM
+========================= */
+
+.todo_form_grid {
+    width: 95%;
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+}
+
+
+/* =========================
+   CALENDAR
+========================= */
 
 .home_calendar {
     width: 95%;
     max-width: 1100px;
-    margin: 50px auto;
+
+    margin: 30px auto;
+
+    overflow-x: hidden;
 }
+
+
+/* Month navigation */
+
+.calendar_navigation {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    margin-bottom: 15px;
+}
+
+
+.calendar_month_title {
+    color: white;
+
+    font-size: 28px;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    margin: 0;
+
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.calendar_nav_button {
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 45px;
+    height: 45px;
+
+    background: #2f2f2f;
+
+    color: white;
+
+    border-radius: 50%;
+
+    text-decoration: none;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+
+    touch-action: manipulation;
+}
+
+
+.calendar_nav_button:hover {
+    background: #1e90ff;
+}
+
+
+/* =========================
+   CALENDAR HEADER
+========================= */
 
 .calendar_header {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+
     gap: 8px;
+
     margin-bottom: 8px;
 }
 
+
 .calendar_header div {
     background: #1e90ff;
+
     color: white;
+
     text-align: center;
+
     padding: 12px;
+
     border-radius: 15px;
+
     font-weight: bold;
+
+    min-width: 0;
+
+    overflow: hidden;
 }
+
+
+/* =========================
+   CALENDAR GRID
+========================= */
 
 .calendar_grid {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
     gap: 8px;
+
+    width: 100%;
 }
 
+
 .calendar_day {
-    min-height: 120px;
+    min-width: 0;
+
+    min-height: 100px;
+
     background: gray;
+
     border-radius: 18px;
+
     padding: 10px;
+
     overflow: hidden;
+
+    box-sizing: border-box;
 }
+
 
 .calendar_day.empty {
     background: transparent;
 }
 
-.calendar_number {
-    color: #212121;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.calendar_todo {
-    background: #1e90ff;
-    color: white;
-    border-radius: 12px;
-    padding: 6px 9px;
-    margin-top: 5px;
-    font-size: 13px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.home_calendar .label_oval {
-   margin-bottom: 20px; 
-  }
-
-
-/* Make calendar days clickable */
 
 .calendar_day:not(.empty) {
     cursor: pointer;
 }
 
+
 .calendar_day.streak_day {
     background: #ff8c00;
 }
 
-/* Popup background */
+
+.calendar_number {
+    color: #212121;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-bottom: 8px;
+}
+
+
+/* Todo inside calendar */
+
+.calendar_todo {
+    background: #1e90ff;
+
+    color: white;
+
+    border-radius: 12px;
+
+    padding: 6px 9px;
+
+    margin-top: 5px;
+
+    font-size: 13px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    max-width: 100%;
+}
+
+
+/* =========================
+   CALENDAR POPUP
+========================= */
 
 .day_todo_popup {
     position: fixed;
+
     inset: 0;
+
+    width: 100%;
+    height: 100%;
 
     background: rgba(0, 0, 0, 0.6);
 
     display: flex;
+
     align-items: center;
     justify-content: center;
 
     z-index: 9999;
+
+    padding: 15px;
+
+    box-sizing: border-box;
 }
-
-
-/* Popup itself */
 
 
 .day_todo_popup_content {
     position: relative;
 
-    width: 90%;
+    width: 100%;
     max-width: 450px;
-    max-height: 70vh;
+
+    max-height: 80vh;
 
     overflow-y: auto;
 
-    /* Hide scrollbar */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer/Edge */
-    
+    scrollbar-width: none;
+
+    -ms-overflow-style: none;
+
     background: #212121;
+
     color: white;
 
     border-radius: 25px;
@@ -371,10 +737,11 @@ dialog {
 
     box-sizing: border-box;
 
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Chrome, Safari, Edge */
+
 .day_todo_popup_content::-webkit-scrollbar {
     display: none;
 }
@@ -389,6 +756,7 @@ dialog {
     right: 15px;
 
     border: none;
+
     background: none;
 
     color: white;
@@ -396,20 +764,25 @@ dialog {
     font-size: 30px;
 
     cursor: pointer;
+
+    padding: 5px 10px;
+
+    touch-action: manipulation;
 }
 
-
-/* Popup title */
 
 #dayTodoTitle {
     text-align: center;
 
     margin-top: 5px;
+
     margin-bottom: 20px;
+
+    padding-right: 35px;
 }
 
 
-/* Individual todo */
+/* Popup todo */
 
 .popup_todo {
     background: #1e90ff;
@@ -421,269 +794,291 @@ dialog {
     margin-bottom: 10px;
 
     text-align: left;
+
+    cursor: default;
+
+    overflow-wrap: anywhere;
 }
 
-
-/* Todo title */
 
 .popup_todo h3 {
     margin: 0 0 5px 0;
 }
 
 
-/* Todo description */
-
 .popup_todo p {
     margin: 5px 0;
+
+    overflow-wrap: anywhere;
 }
 
 
-/* Don't let clicks on the todo trigger the calendar day */
+/* =========================
+   PHONE
+========================= */
 
-.popup_todo {
-    cursor: default;
-}
+@media screen and (max-width: 700px) {
 
-@media screen and (max-width: 600px) {
+    body {
+        padding-top: 70px;
+    }
+
+
+    /* Buttons */
+
+    .button {
+        font-size: 14px;
+
+        padding: 12px 16px;
+
+        margin: 7px;
+
+        border-radius: 14px;
+    }
+
+
+    /* Menu */
+
+    #openBtn {
+        top: 10px;
+        right: 10px;
+    }
+
+
+    dialog {
+        top: 65px;
+
+        right: 10px;
+        left: 10px;
+
+        width: auto;
+
+        max-width: none;
+
+        padding: 20px;
+
+        border-radius: 18px;
+    }
+
+
+    /* Form */
+
+    .todo_form_grid {
+        grid-template-columns: 1fr;
+
+        width: 92%;
+
+        gap: 10px;
+    }
+
+
+    /* Calendar */
 
     .home_calendar {
         width: 96%;
+
         margin: 20px auto;
-        overflow: hidden;
     }
 
-    /* Days of the week */
-    .calendar_header {
-        font-size: 10px;
-        gap: 2px;
+
+    .calendar_navigation {
+        margin-bottom: 10px;
     }
 
-    /* Calendar itself */
-    .calendar_grid {
-        gap: 2px;
-        width: 100%;
-    }
-
-    /* Individual day */
-    .calendar_day {
-        min-width: 0;
-        min-height: 70px;
-        padding: 3px;
-        border-radius: 8px;
-        overflow: hidden;
-    }
-
-    /* Date number */
-    .calendar_number {
-        font-size: 12px;
-        line-height: 1;
-        margin-bottom: 3px;
-    }
-
-    /* Todo names inside calendar */
-    .calendar_todo {
-        font-size: 7px;
-        line-height: 1.1;
-
-        padding: 2px 3px;
-        margin-top: 2px;
-
-        border-radius: 4px;
-
-        /* Keep long names from breaking the calendar */
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-}
-
-.oval_textbox {
-    width: 300px;
-    padding: 12px 18px;
-    box-sizing: border-box;
-
-    background: #2f2f2f;
-    color: white;
-
-    border: none;
-    border-radius: 25px;
-
-    outline: none;
-    font-size: 16px;
-
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.oval_textbox:focus {
-    box-shadow: 0 0 0 2px #1e90ff;
-}
-
-.oval_textbox::placeholder {
-    color: #b0b0b0;
-}
-
-
-
-
-
-.home_calendar {
-    width: 95%;
-    max-width: 1100px;
-    margin: 30px auto;
-}
-
-
-/* Month navigation */
-
-.calendar_navigation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.calendar_month_title {
-    color: white;
-    font-size: 28px;
-    font-weight: bold;
-    text-align: center;
-}
-
-.calendar_nav_button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    width: 45px;
-    height: 45px;
-
-    background: #2f2f2f;
-    color: white;
-
-    border-radius: 50%;
-
-    text-decoration: none;
-
-    font-size: 25px;
-    font-weight: bold;
-
-    transition: 0.2s;
-}
-
-.calendar_nav_button:hover {
-    background: #1e90ff;
-}
-
-
-/* Days of the week */
-
-.calendar_header {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
-    margin-bottom: 8px;
-}
-
-.calendar_header div {
-    background: #1e90ff;
-    color: white;
-
-    text-align: center;
-
-    padding: 12px;
-
-    border-radius: 15px;
-
-    font-weight: bold;
-}
-
-
-/* Calendar grid */
-
-.calendar_grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
-}
-
-
-/* Individual days */
-
-.calendar_day {
-    min-height: 100px;
-
-    background: gray;
-
-    border-radius: 18px;
-
-    padding: 10px;
-
-    box-sizing: border-box;
-}
-
-
-/* Days from the previous/next month */
-
-.calendar_day.empty {
-    background: transparent;
-}
-
-
-/* Completed streak days */
-
-.calendar_day.streak_day {
-    background: #ff8c00;
-}
-
-
-/* Day number */
-
-.calendar_number {
-    color: #212121;
-
-    font-size: 20px;
-
-    font-weight: bold;
-}
-
-@media screen and (max-width: 600px) {
-
-    .home_calendar {
-        width: 96%;
-    }
 
     .calendar_month_title {
         font-size: 20px;
     }
 
+
     .calendar_nav_button {
-        width: 38px;
-        height: 38px;
+        width: 40px;
+        height: 40px;
 
         font-size: 20px;
     }
+
 
     .calendar_header {
         gap: 3px;
     }
 
+
     .calendar_header div {
         padding: 8px 2px;
+
         font-size: 10px;
+
         border-radius: 8px;
     }
+
 
     .calendar_grid {
         gap: 3px;
     }
 
+
     .calendar_day {
         min-height: 65px;
+
         padding: 5px;
+
         border-radius: 8px;
     }
 
+
     .calendar_number {
         font-size: 13px;
+
+        margin-bottom: 3px;
+    }
+
+
+    .calendar_todo {
+        font-size: 7px;
+
+        line-height: 1.1;
+
+        padding: 2px 3px;
+
+        margin-top: 2px;
+
+        border-radius: 4px;
+    }
+
+
+    /* Popup */
+
+    .day_todo_popup {
+        padding: 10px;
+    }
+
+
+    .day_todo_popup_content {
+        width: 100%;
+
+        max-height: 85vh;
+
+        padding: 20px;
+
+        border-radius: 20px;
+    }
+
+
+    /* Inputs */
+
+    .oval_textbox {
+        width: 90vw;
+
+        max-width: 350px;
+
+        min-height: 46px;
+    }
+
+
+    /* Horns */
+
+    .horn {
+        font-size: 60px;
+    }
+
+
+    #leftHorn {
+        left: -90px;
+    }
+
+
+    #rightHorn {
+        right: -90px;
+    }
+
+
+    #leftHorn.show {
+        transform:
+            translate(95px, -50%);
+    }
+
+
+    #rightHorn.show {
+        transform:
+            translate(-95px, -50%)
+            scaleX(-1);
+    }
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media screen and (max-width: 380px) {
+
+    .calendar_header div {
+        font-size: 8px;
+
+        padding: 7px 1px;
+    }
+
+
+    .calendar_day {
+        min-height: 58px;
+
+        padding: 3px;
+
+        border-radius: 6px;
+    }
+
+
+    .calendar_number {
+        font-size: 11px;
+    }
+
+
+    .calendar_todo {
+        font-size: 6px;
+
+        padding: 2px;
+
+        border-radius: 3px;
+    }
+
+
+    .calendar_month_title {
+        font-size: 18px;
+    }
+
+
+    .calendar_nav_button {
+        width: 36px;
+        height: 36px;
+
+        font-size: 18px;
+    }
+
+
+    .horn {
+        font-size: 50px;
+    }
+}
+
+
+/* =========================
+   LANDSCAPE PHONES
+========================= */
+
+@media screen and (max-height: 500px) and (orientation: landscape) {
+
+    body {
+        padding-top: 60px;
+    }
+
+
+    .day_todo_popup_content {
+        max-height: 90vh;
+    }
+
+
+    .horn {
+        font-size: 55px;
     }
 }
