@@ -77,6 +77,24 @@ def home(request):
                 profile.save(update_fields=["text_box_on"])
                 return redirect("home")
 
+            if action == "complete_streak":
+                streak_id = request.POST.get("streak_id")
+                streak = Streak.objects.get(id=streak_id, profile=profile)
+
+                today = date.today()
+
+                if not streak.completions.filter(completed_date=today).exists():
+                    StreakCompletion.objects.create(
+                        streak=streak,
+                        completed_date=today
+                    )
+
+                    streak.count += 1
+                    streak.last_completed = today
+                    streak.save(update_fields=["count", "last_completed"])
+
+                return redirect("home")
+
         # Reset streaks if they have not been completed for more than one day
         for streak in profile.streaks.all():
             if streak.last_completed is not None:

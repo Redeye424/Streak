@@ -64,6 +64,8 @@
                 name="streak_id"
                 value="{{ streak.id }}"
             >
+            
+            <input type="hidden" name="action" value="complete_streak">
 
             <button type="submit" class="button">
                 Complete {{ streak.name }}
