@@ -10,6 +10,7 @@ from .models import Profile, Streak, StreakCompletion
 from django.contrib.auth.models import User
 import calendar
 from django.http import HttpResponse
+from django.utils import timezone
 
 
 def user_csv_path(User):
@@ -86,7 +87,7 @@ def home(request):
                     if days_since_last > 1:
                         return redirect("home")
 
-                today = date.today()
+                today = timezone.localdate()
 
                 if not streak.completions.filter(completed_date=today).exists():
                     StreakCompletion.objects.create(
