@@ -81,6 +81,11 @@ def home(request):
                 streak_id = request.POST.get("streak_id")
                 streak = Streak.objects.get(id=streak_id, profile=profile)
 
+                if streak.last_completed is not None:
+                    days_since_last = (date.today() - streak.last_completed).days
+                    if days_since_last > 1:
+                        return redirect("home")
+
                 today = date.today()
 
                 if not streak.completions.filter(completed_date=today).exists():

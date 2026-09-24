@@ -56,21 +56,23 @@
             {{ streak.count }} day streak
         </p>
 
-        <form method="POST" style="text-align: center;">
-            {% csrf_token %}
+        {% if streak.count > 0 and not streak.completed_today %}
+            <form method="POST" style="text-align: center;">
+                {% csrf_token %}
 
-            <input
-                type="hidden"
-                name="streak_id"
-                value="{{ streak.id }}"
-            >
-            
-            <input type="hidden" name="action" value="complete_streak">
+                <input
+                    type="hidden"
+                    name="streak_id"
+                    value="{{ streak.id }}"
+                >
 
-            <button type="submit" class="button">
-                Complete {{ streak.name }}
-            </button>
-        </form>
+                <input type="hidden" name="action" value="complete_streak">
+
+                <button type="submit" class="button">
+                    Complete {{ streak.name }}
+                </button>
+            </form>
+        {% endif %}
 
         {% if streak.completed_today %}
 
