@@ -59,6 +59,7 @@ def home(request):
     
     if request.user.is_authenticated:
         profile = Profile.objects.get(user=request.user)
+        today = timezone.localdate()
 
         if request.method == "POST":
             action = request.POST.get("action")
@@ -83,11 +84,9 @@ def home(request):
                 streak = Streak.objects.get(id=streak_id, profile=profile)
 
                 if streak.last_completed is not None:
-                    days_since_last = (date.today() - streak.last_completed).days
+                    days_since_last = (today - streak.last_completed).days
                     if days_since_last > 1:
                         return redirect("home")
-
-                today = timezone.localdate()
 
                 if not streak.completions.filter(completed_date=today).exists():
                     StreakCompletion.objects.create(
@@ -104,7 +103,7 @@ def home(request):
         # Reset streaks if they have not been completed for more than one day
         for streak in profile.streaks.all():
             if streak.last_completed is not None:
-                days_since_last = (date.today() - streak.last_completed).days
+                days_since_last = (today - streak.last_completed).days
 
                 if days_since_last > 1:
                     streak.count = 0
@@ -113,8 +112,6 @@ def home(request):
         # -------------------------
         # Get the month to display
         # -------------------------
-
-        today = date.today()
 
         try:
             selected_year = int(request.GET.get("year", today.year))
