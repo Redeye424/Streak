@@ -56,7 +56,7 @@
             {{ streak.count }} day streak
         </p>
 
-        {% if streak.count > 0 and not streak.completed_today %}
+        {% if streak.count >= 0 and not streak.completed_today %}
             <form method="POST" style="text-align: center;">
                 {% csrf_token %}
 
