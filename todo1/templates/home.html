@@ -67,10 +67,15 @@
                 >
 
                 <input type="hidden" name="action" value="complete_streak">
-
-                <button type="submit" class="button">
-                    Complete {{ streak.name }}
-                </button>
+                {% if streak.count == 0 %}
+                    <button type="submit" class="button">
+                        Start {{ streak.name }} Streak
+                    </button>
+                {% else %}
+                    <button type="submit" class="button">
+                        Increase {{ streak.name }}
+                    </button>
+                {% endif %}
             </form>
         {% endif %}
 
