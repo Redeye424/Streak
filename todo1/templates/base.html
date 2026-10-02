@@ -76,6 +76,14 @@
             New Streak
         </button>
     </form>
+    {% if active_page != "home" %}
+        <form method="POST" action="{% url 'home' %}">
+            {% csrf_token %}
+            <button class="button" type="submit">
+                Dashboard
+            </button>
+        </form>
+    {% endif %}
     {% block popup_actions %}{% endblock %}
     {% else %}
     <form method="POST" action="{% url 'signup' %}">
