@@ -87,6 +87,8 @@ def home(request):
                     days_since_last = (today - streak.last_completed).days
                     if days_since_last > 1:
                         return redirect("home")
+                else:
+                    streak.last_completed = today
 
                 if not streak.completions.filter(completed_date=today).exists():
                     StreakCompletion.objects.create(
@@ -107,7 +109,8 @@ def home(request):
 
                 if days_since_last > 1:
                     streak.count = 0
-                    streak.save()
+                    streak.last_completed = None
+                    streak.save(update_fields=["count", "last_completed"])
 
         # -------------------------
         # Get the month to display
